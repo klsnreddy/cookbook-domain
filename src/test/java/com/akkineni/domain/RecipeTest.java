@@ -46,12 +46,12 @@ public class RecipeTest {
 		 */
 		recipe2 = new Recipe(101, "My Recipe", "This is the contents",
 				"Vijay Akkineni");
-		System.out.println(recipe2.hashCode());
-		Object obj = new Recipe(101, "My Recipe", "This is the contents",
+		Object obj = new Recipe(102, "My Recipe", "This is the contents",
 				"Vijay Akkineni");
-		System.out.println(obj.hashCode());
+		Assert.assertEquals(false, recipe2.equals(obj));
 
-		Assert.assertEquals(true, recipe2.equals(obj));
+		Assert.assertEquals(true, recipe2.equals(recipe2));
+
 	}
 
 	@Test
