@@ -62,8 +62,8 @@ public class RecipeTest {
 				"Vijay Akkineni");
 		Object obj2 = new Recipe(101, "My Recipe", "This is the contents",
 				"Vijay Akkineni");
-		System.out.println("***");
-		Assert.assertEquals(true, recipe2.equals(obj2));
+		boolean flag = recipe2.equals(obj2);
+		Assert.assertEquals(true, flag);
 
 	}
 

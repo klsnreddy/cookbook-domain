@@ -142,8 +142,9 @@ public class Recipe implements Serializable {
 	@Override
 	public boolean equals(Object obj) {
 
+		boolean flag = false;
+
 		if (this == obj) {
-			System.out.println("Same memory address");
 			return true;
 		}
 
@@ -151,16 +152,12 @@ public class Recipe implements Serializable {
 			return false;
 		}
 
-		if (!(obj instanceof Recipe)) {
-			return false;
+		if (obj instanceof Recipe) {
+			Recipe other = (Recipe) obj;
+			if (id == other.id) {
+				flag = true;
+			}
 		}
-
-		Recipe other = (Recipe) obj;
-		if (id == other.id) {
-			return true;
-		}
-
-		return false;
+		return flag;
 	}
-
 }
