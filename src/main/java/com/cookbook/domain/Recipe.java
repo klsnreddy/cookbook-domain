@@ -115,13 +115,16 @@ public class Recipe implements Serializable {
 	@Override
 	public String toString() {
 		return "Recipe [id=" + id + ", title=" + title + ", contents="
-				+ contents + ", author=" + author + "]";
+				+ contents + ", author=" + author + "]".trim();
 	}
 
 	/*
+	 * 
 	 * (non-Javadoc)
 	 * 
-	 * @see java.lang.Object#hashCode()
+	 * @see java.lang.Object#hashCode() Hashcode generated is a unique number
+	 * for each ID. Example if the ID is 10 the has code would be 9+32 according
+	 * to the logic in the method
 	 */
 	@Override
 	public int hashCode() {

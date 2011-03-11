@@ -86,6 +86,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -107,6 +114,53 @@
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<check>
+						<branchRate>85</branchRate>
+						<lineRate>85</lineRate>
+						<haltOnFailure>true</haltOnFailure>
+						<totalBranchRate>85</totalBranchRate>
+						<totalLineRate>85</totalLineRate>
+						<packageLineRate>85</packageLineRate>
+						<packageBranchRate>85</packageBranchRate>
+						<regexes>
+							<regex>
+								<pattern>com.cookbook.*</pattern>
+								<branchRate>90</branchRate>
+								<lineRate>80</lineRate>
+							</regex>
+							<regex>
+								<pattern>com.cookbook.*</pattern>
+								<branchRate>40</branchRate>
+								<lineRate>30</lineRate>
+							</regex>
+						</regexes>
+					</check>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>clean</goal>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.7.2</version>
+				<configuration>
+					<argLine>-Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m</argLine>
+					<parallel>true</parallel>
+					<includes>
+						<include>**/*Test*.java</include>
+					</includes>
 				</configuration>
 			</plugin>
 		</plugins>
