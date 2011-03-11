@@ -50,7 +50,20 @@ public class RecipeTest {
 				"Vijay Akkineni");
 		Assert.assertEquals(false, recipe2.equals(obj));
 
+		/**
+		 * Test for same meory address equality
+		 */
 		Assert.assertEquals(true, recipe2.equals(recipe2));
+
+		/*
+		 * Testing for equal ID's
+		 */
+		recipe2 = new Recipe(101, "My Recipe", "This is the contents",
+				"Vijay Akkineni");
+		Object obj2 = new Recipe(101, "My Recipe", "This is the contents",
+				"Vijay Akkineni");
+		System.out.println("***");
+		Assert.assertEquals(true, recipe2.equals(obj2));
 
 	}
 

@@ -156,11 +156,11 @@ public class Recipe implements Serializable {
 		}
 
 		Recipe other = (Recipe) obj;
-		if (id != other.id) {
-			return false;
-		} else {
+		if (id == other.id) {
 			return true;
 		}
+
+		return false;
 	}
 
 }
