@@ -141,16 +141,23 @@ public class Recipe implements Serializable {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+
+		if (obj == null) {
+			System.out.println("checking if the object is null");
+			return false;
+		}
+
+		if (!(obj instanceof Recipe)) {
+			System.out.println("object is not an instanceof recipe");
+			return false;
+		}
+
+		Recipe other = (Recipe) obj;
+
+		if (this.hashCode() == other.hashCode()) {
 			return true;
 		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Recipe)) {
-			return false;
-		}
-		Recipe other = (Recipe) obj;
+
 		if (id != other.id) {
 			return false;
 		}

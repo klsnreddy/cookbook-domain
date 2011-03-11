@@ -1,5 +1,7 @@
 package com.akkineni.domain;
 
+import java.util.ArrayList;
+
 import junit.framework.Assert;
 
 import org.junit.Before;
@@ -14,7 +16,42 @@ public class RecipeTest {
 	@Before
 	public void initialize() {
 		recipe = new Recipe();
-		System.out.println("Initializeing the recipe for test");
+	}
+
+	@Test
+	public void testEqualMethod() {
+
+		/*
+		 * Testing Equal Hashcode scenario
+		 */
+		Recipe recipe2 = new Recipe(10, "My Recipe", "This is the contents",
+				"Vijay Akkineni");
+		Recipe recipe3 = new Recipe(10, "My Recipe", "This is the contents",
+				"Vijay Akkineni");
+		Assert.assertEquals(true, recipe2.equals(recipe3));
+		/*
+		 * Testing Null scenario
+		 */
+		Assert.assertEquals(false, recipe3.equals(null));
+
+		/*
+		 * TEsting with Object and Class os different Type
+		 */
+
+		Assert.assertEquals(false, recipe3.equals(new Object()));
+		Assert.assertEquals(false, recipe3.equals(new ArrayList<Object>()));
+
+		/*
+		 * Testing for equal ID's with different hashcodes
+		 */
+		recipe2 = new Recipe(101, "My Recipe", "This is the contents",
+				"Vijay Akkineni");
+		System.out.println(recipe2.hashCode());
+		Object obj = new Recipe(101, "My Recipe", "This is the contents",
+				"Vijay Akkineni");
+		System.out.println(obj.hashCode());
+
+		Assert.assertEquals(true, recipe2.equals(obj));
 	}
 
 	@Test
