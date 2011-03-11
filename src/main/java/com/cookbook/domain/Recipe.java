@@ -5,14 +5,40 @@ package com.cookbook.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Id;
+
+import org.hibernate.annotations.Entity;
+
 /**
- * @author lokesh
+ * Recipe is the domain object to hold recipe contents and annotated with
+ * Hibernate Entity class
  * 
+ * @author lokesh
  */
+@Entity
 public class Recipe implements Serializable {
+
+	/*
+	 * Additional Costructor with the fields
+	 */
+	public Recipe(long id, String title, String contents, String author) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.contents = contents;
+		this.author = author;
+	}
+
+	/**
+	 * Empty Costructor necessary for JPA 2.0
+	 */
+	public Recipe() {
+		super();
+	}
 
 	private static final long serialVersionUID = -8333501449975018182L;
 
+	@Id
 	private long id;
 
 	private String title;
