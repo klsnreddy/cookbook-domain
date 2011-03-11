@@ -5,6 +5,8 @@
 	version="2.0">
 	<persistence-unit name="cookbook-domain"
 		transaction-type="RESOURCE_LOCAL">
+		<!-- Persistence provider set to hibernate -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>com.cookbook.domain.Recipe</class>
 	</persistence-unit>
 </persistence>

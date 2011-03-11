@@ -5,9 +5,8 @@ package com.cookbook.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.Entity;
 
 /**
  * Recipe is the domain object to hold recipe contents and annotated with
