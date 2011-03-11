@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 import junit.framework.Assert;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.cookbook.domain.Recipe;
 
 public class RecipeTest {
 
-	private Recipe recipe;
+	private static Recipe recipe;
 
-	@Before
-	public void initialize() {
+	@BeforeClass
+	public static void initialize() {
 		recipe = new Recipe();
 	}
 
