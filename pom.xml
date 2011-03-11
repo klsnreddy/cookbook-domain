@@ -122,13 +122,13 @@
 				<version>2.4</version>
 				<configuration>
 					<check>
-						<branchRate>85</branchRate>
-						<lineRate>85</lineRate>
+						<branchRate>70</branchRate>
+						<lineRate>70</lineRate>
 						<haltOnFailure>true</haltOnFailure>
-						<totalBranchRate>85</totalBranchRate>
-						<totalLineRate>85</totalLineRate>
-						<packageLineRate>85</packageLineRate>
-						<packageBranchRate>85</packageBranchRate>
+						<totalBranchRate>70</totalBranchRate>
+						<totalLineRate>70</totalLineRate>
+						<packageLineRate>70</packageLineRate>
+						<packageBranchRate>70</packageBranchRate>
 						<regexes>
 							<regex>
 								<pattern>com.cookbook.*</pattern>
