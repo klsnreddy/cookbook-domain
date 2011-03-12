@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 /**
  * Recipe is the domain object to hold recipe contents and annotated with
@@ -15,7 +16,7 @@ import javax.persistence.Id;
  * @author lokesh
  */
 @Entity
-public class Recipe implements Serializable {
+public class Recipe implements DomainObject, Serializable {
 
 	/*
 	 * Additional Costructor with the fields
@@ -45,6 +46,9 @@ public class Recipe implements Serializable {
 	private String contents;
 
 	private String author;
+
+	@Version
+	private int version;
 
 	/**
 	 * @return the id
@@ -106,6 +110,21 @@ public class Recipe implements Serializable {
 		this.author = author;
 	}
 
+	/**
+	 * @param version
+	 *            the version to set
+	 */
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	/**
+	 * @return the version
+	 */
+	public int getVersion() {
+		return version;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -159,4 +178,5 @@ public class Recipe implements Serializable {
 		}
 		return flag;
 	}
+
 }
