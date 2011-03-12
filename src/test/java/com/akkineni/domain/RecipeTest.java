@@ -73,11 +73,13 @@ public class RecipeTest {
 		recipe.setContents("This is test content");
 		recipe.setAuthor("VIjay Akkineni");
 		recipe.setTitle("My Test Recipe");
+		recipe.setVersion(0);
 
 		Assert.assertEquals(1, recipe.getId());
 		Assert.assertEquals("This is test content", recipe.getContents());
 		Assert.assertEquals("VIjay Akkineni", recipe.getAuthor());
 		Assert.assertEquals("My Test Recipe", recipe.getTitle());
+		Assert.assertEquals(0, recipe.getVersion());
 
 	}
 
