@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,7 @@ import javax.persistence.Version;
  * @author lokesh
  */
 @Entity
+// @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Recipe implements DomainObject, Serializable {
 
 	private static final long serialVersionUID = -8333501449975018182L;
@@ -52,8 +54,9 @@ public class Recipe implements DomainObject, Serializable {
 
 	private String contents;
 
-	@OneToMany
-	private List<Author> authors = new ArrayList<Author>();
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+	// @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	private List<Author> authors;
 
 	@Version
 	private int version;
@@ -107,14 +110,17 @@ public class Recipe implements DomainObject, Serializable {
 	 * @return the author
 	 */
 	public List<Author> getAuthors() {
+		if (authors == null)
+			authors = new ArrayList<Author>();
 		return authors;
 	}
 
 	public boolean addAuthorToRecipe(Author author) {
 		boolean flag = false;
-		author.setRecipe(this);
-		if (author != null)
+		if (author != null) {
+			author.setRecipe(this);
 			flag = this.authors.add(author);
+		}
 		return flag;
 	}
 
