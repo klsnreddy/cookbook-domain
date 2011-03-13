@@ -108,45 +108,23 @@
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.3.1</version>
-				<!--configuration> <archive> <manifest> <addClasspath>true</addClasspath> 
-					</manifest> </archive> </configuration -->
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>2.4</version>
 				<configuration>
-					<check>
-						<branchRate>70</branchRate>
-						<lineRate>70</lineRate>
-						<haltOnFailure>true</haltOnFailure>
-						<totalBranchRate>70</totalBranchRate>
-						<totalLineRate>70</totalLineRate>
-						<packageLineRate>70</packageLineRate>
-						<packageBranchRate>70</packageBranchRate>
-						<regexes>
-							<regex>
-								<pattern>com.cookbook.*</pattern>
-								<branchRate>90</branchRate>
-								<lineRate>80</lineRate>
-							</regex>
-							<regex>
-								<pattern>com.cookbook.*</pattern>
-								<branchRate>40</branchRate>
-								<lineRate>30</lineRate>
-							</regex>
-						</regexes>
-					</check>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
 				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>clean</goal>
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
+			<!-- plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>cobertura-maven-plugin</artifactId> 
+				<version>2.4</version> <configuration> <check> <branchRate>70</branchRate> 
+				<lineRate>70</lineRate> <haltOnFailure>true</haltOnFailure> <totalBranchRate>70</totalBranchRate> 
+				<totalLineRate>70</totalLineRate> <packageLineRate>70</packageLineRate> <packageBranchRate>70</packageBranchRate> 
+				<regexes> <regex> <pattern>com.cookbook.*</pattern> <branchRate>90</branchRate> 
+				<lineRate>80</lineRate> </regex> <regex> <pattern>com.cookbook.*</pattern> 
+				<branchRate>40</branchRate> <lineRate>30</lineRate> </regex> </regexes> </check> 
+				</configuration> <executions> <execution> <goals> <goal>clean</goal> <goal>check</goal> 
+				</goals> </execution> </executions> </plugin -->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.7.2</version>
@@ -154,7 +132,7 @@
 					<argLine>-Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m</argLine>
 					<parallel>true</parallel>
 					<includes>
-						<include>**/*Test*.java</include>
+						<include>**/*TestSuite*.java</include>
 					</includes>
 				</configuration>
 			</plugin>
