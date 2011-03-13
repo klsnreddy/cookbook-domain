@@ -5,8 +5,11 @@ package com.cookbook.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.TableGenerator;
 
 /**
  * @author lokesh
@@ -26,7 +29,9 @@ public class Author implements DomainObject, Serializable {
 		this.name = name;
 	}
 
+	@TableGenerator(name = "authorGen", table = "ID_GEN", pkColumnName = "GEN_KEY", valueColumnName = "GEN_VALUE", pkColumnValue = "AUTHOR_ID", allocationSize = 1)
 	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "authorGen")
 	private long id;
 	private String name;
 
@@ -119,7 +124,9 @@ public class Author implements DomainObject, Serializable {
 		return flag;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

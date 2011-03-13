@@ -8,8 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.TableGenerator;
 import javax.persistence.Version;
 
 /**
@@ -40,7 +43,9 @@ public class Recipe implements DomainObject, Serializable {
 		super();
 	}
 
+	@TableGenerator(name = "recipeGen", table = "ID_GEN", pkColumnName = "GEN_KEY", valueColumnName = "GEN_VALUE", pkColumnValue = "RECIPE_ID", allocationSize = 1)
 	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "recipeGen")
 	private long id;
 
 	private String title;
