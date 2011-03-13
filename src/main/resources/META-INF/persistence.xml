@@ -8,5 +8,6 @@
 		<!-- Persistence provider set to hibernate -->
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>com.cookbook.domain.Recipe</class>
+		<class>com.cookbook.domain.Author</class>
 	</persistence-unit>
 </persistence>

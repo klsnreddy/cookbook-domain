@@ -5,6 +5,7 @@ package com.cookbook.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import javax.persistence.TableGenerator;
  * @author lokesh
  * 
  */
+@Entity
 public class Author implements DomainObject, Serializable {
 
 	private static final long serialVersionUID = -7310625405953952315L;
