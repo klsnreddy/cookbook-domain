@@ -4,9 +4,12 @@
 package com.cookbook.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 /**
@@ -18,15 +21,16 @@ import javax.persistence.Version;
 @Entity
 public class Recipe implements DomainObject, Serializable {
 
+	private static final long serialVersionUID = -8333501449975018182L;
+
 	/*
 	 * Additional Costructor with the fields
 	 */
-	public Recipe(long id, String title, String contents, String author) {
+	public Recipe(long id, String title, String contents) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.contents = contents;
-		this.author = author;
 	}
 
 	/**
@@ -36,8 +40,6 @@ public class Recipe implements DomainObject, Serializable {
 		super();
 	}
 
-	private static final long serialVersionUID = -8333501449975018182L;
-
 	@Id
 	private long id;
 
@@ -45,7 +47,8 @@ public class Recipe implements DomainObject, Serializable {
 
 	private String contents;
 
-	private String author;
+	@OneToMany
+	private List<Author> authors = new ArrayList<Author>();
 
 	@Version
 	private int version;
@@ -98,51 +101,23 @@ public class Recipe implements DomainObject, Serializable {
 	/**
 	 * @return the author
 	 */
-	public String getAuthor() {
-		return author;
+	public List<Author> getAuthors() {
+		return authors;
 	}
 
-	/**
-	 * @param author
-	 *            the author to set
-	 */
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	/**
-	 * @param version
-	 *            the version to set
-	 */
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	/**
-	 * @return the version
-	 */
-	public int getVersion() {
-		return version;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Recipe [id=" + id + ", title=" + title + ", contents="
-				+ contents + ", author=" + author + "]".trim();
+	public boolean addAuthorToRecipe(Author author) {
+		boolean flag = false;
+		author.setRecipe(this);
+		if (author != null)
+			flag = this.authors.add(author);
+		return flag;
 	}
 
 	/*
 	 * 
 	 * (non-Javadoc)
 	 * 
-	 * @see java.lang.Object#hashCode() Hashcode generated is a unique number
-	 * for each ID. Example if the ID is 10 the has code would be 9+32 according
-	 * to the logic in the method
+	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
@@ -177,6 +152,18 @@ public class Recipe implements DomainObject, Serializable {
 			}
 		}
 		return flag;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Recipe [id=" + id + ", title=" + title + ", contents="
+				+ contents + ", authors=" + authors + ", version=" + version
+				+ "]";
 	}
 
 }

@@ -7,6 +7,7 @@ import junit.framework.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.cookbook.domain.Author;
 import com.cookbook.domain.Recipe;
 
 public class RecipeTest {
@@ -24,18 +25,17 @@ public class RecipeTest {
 		/*
 		 * Testing Equal Hashcode scenario
 		 */
-		Recipe recipe2 = new Recipe(10, "My Recipe", "This is the contents",
-				"Vijay Akkineni");
-		Recipe recipe3 = new Recipe(10, "My Recipe", "This is the contents",
-				"Vijay Akkineni");
+		Recipe recipe2 = new Recipe(10, "My Recipe", "This is the contents");
+		Recipe recipe3 = new Recipe(10, "My Recipe", "This is the contents");
 		Assert.assertEquals(true, recipe2.equals(recipe3));
+
 		/*
 		 * Testing Null scenario
 		 */
 		Assert.assertEquals(false, recipe3.equals(null));
 
 		/*
-		 * TEsting with Object and Class os different Type
+		 * Testing with Object and Class os different Type
 		 */
 
 		Assert.assertEquals(false, recipe3.equals(new Object()));
@@ -44,24 +44,20 @@ public class RecipeTest {
 		/*
 		 * Testing for equal ID's with different hashcodes
 		 */
-		recipe2 = new Recipe(101, "My Recipe", "This is the contents",
-				"Vijay Akkineni");
-		Object obj = new Recipe(102, "My Recipe", "This is the contents",
-				"Vijay Akkineni");
+		recipe2 = new Recipe(101, "My Recipe", "This is the contents");
+		Object obj = new Recipe(102, "My Recipe", "This is the contents");
 		Assert.assertEquals(false, recipe2.equals(obj));
 
 		/**
-		 * Test for same meory address equality
+		 * Test for same memory address equality
 		 */
 		Assert.assertEquals(true, recipe2.equals(recipe2));
 
 		/*
 		 * Testing for equal ID's
 		 */
-		recipe2 = new Recipe(101, "My Recipe", "This is the contents",
-				"Vijay Akkineni");
-		Object obj2 = new Recipe(101, "My Recipe", "This is the contents",
-				"Vijay Akkineni");
+		recipe2 = new Recipe(101, "My Recipe", "This is the contents");
+		Object obj2 = new Recipe(101, "My Recipe", "This is the contents");
 		boolean flag = recipe2.equals(obj2);
 		Assert.assertEquals(true, flag);
 
@@ -71,15 +67,11 @@ public class RecipeTest {
 	public void testGettersAndSetters() {
 		recipe.setId(1);
 		recipe.setContents("This is test content");
-		recipe.setAuthor("VIjay Akkineni");
 		recipe.setTitle("My Test Recipe");
-		recipe.setVersion(0);
 
 		Assert.assertEquals(1, recipe.getId());
 		Assert.assertEquals("This is test content", recipe.getContents());
-		Assert.assertEquals("VIjay Akkineni", recipe.getAuthor());
 		Assert.assertEquals("My Test Recipe", recipe.getTitle());
-		Assert.assertEquals(0, recipe.getVersion());
 
 	}
 
@@ -87,27 +79,35 @@ public class RecipeTest {
 	public void testConstructors() {
 		recipe = new Recipe();
 		Assert.assertNotNull(recipe);
-		recipe = new Recipe(1, "My Recipe", "This is the contents",
-				"Vijay Akkineni");
+		recipe = new Recipe(1, "My Recipe", "This is the contents");
 		Assert.assertNotNull(recipe);
 		Assert.assertEquals(1, recipe.getId());
 		Assert.assertEquals("This is the contents", recipe.getContents());
-		Assert.assertEquals("Vijay Akkineni", recipe.getAuthor());
 		Assert.assertEquals("My Recipe", recipe.getTitle());
 
 		Assert.assertEquals(
-				"Recipe [id=1, title=My Recipe, contents=This is the contents, author=Vijay Akkineni]",
+				"Recipe [id=1, title=My Recipe, contents=This is the contents, authors=[], version=0]",
 				recipe.toString());
 	}
 
 	@Test
 	public void testHashCode() {
-		recipe = new Recipe(1, "My Recipe", "This is the contents",
-				"Vijay Akkineni");
+		recipe = new Recipe(1, "My Recipe", "This is the contents");
 		Assert.assertEquals(32, recipe.hashCode());
-		recipe = new Recipe(100, "My Recipe", "This is the contents",
-				"Vijay Akkineni");
+		recipe = new Recipe(100, "My Recipe", "This is the contents");
 		Assert.assertEquals(131, recipe.hashCode());
+	}
+
+	@Test
+	public void testAddAuthors() {
+		Assert.assertEquals(0, recipe.getAuthors().size());
+		Author author1 = new Author(1, "Vijay Akkineni");
+		Author author2 = new Author(2, "Akhila Kambhampati");
+		recipe = new Recipe(1, "My Recipe", "This is the contents");
+		recipe.addAuthorToRecipe(author1);
+		recipe.addAuthorToRecipe(author2);
+		int testSize = recipe.getAuthors().size();
+		Assert.assertEquals(2, testSize);
 	}
 
 }
