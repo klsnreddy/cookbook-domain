@@ -86,7 +86,7 @@ public class RecipeTest {
 		Assert.assertEquals("My Recipe", recipe.getTitle());
 
 		Assert.assertEquals(
-				"Recipe [id=1, title=My Recipe, contents=This is the contents, authors=[], version=0]",
+				"Recipe [id=1, title=My Recipe, contents=This is the contents, authors=null, version=0]",
 				recipe.toString());
 	}
 

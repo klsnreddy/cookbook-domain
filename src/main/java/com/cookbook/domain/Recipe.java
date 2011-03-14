@@ -119,7 +119,12 @@ public class Recipe implements DomainObject, Serializable {
 		boolean flag = false;
 		if (author != null) {
 			author.setRecipe(this);
-			flag = this.authors.add(author);
+			if (authors != null) {
+				flag = this.authors.add(author);
+			} else {
+				authors = new ArrayList<Author>();
+				flag = this.authors.add(author);
+			}
 		}
 		return flag;
 	}
